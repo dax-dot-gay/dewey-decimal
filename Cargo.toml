@@ -1,6 +1,6 @@
 [package]
 name = "dewey-decimal"
-version = "1.0.1"
+version = "1.0.2"
 edition = "2024"
 license-file = "LICENSE"
 description = "Simple wrapper around Dewey Decimal classifications"
@@ -11,10 +11,10 @@ categories = ["text-processing", "parser-implementations", "data-structures"]
 keywords = ["dewey-decimal", "serde", "ddc", "books", "openlibrary"]
 
 [dependencies]
-bevy_reflect = { version = "0.16.1", optional = true }
-schemars = { version = "1.0.4", optional = true }
-serde = { version = "1.0.219", features = ["derive"], optional = true }
-specta = { version = "1.0.5", optional = true }
+bevy_reflect = { version = "^0.16.0", optional = true }
+schemars = { version = "^1.0.0", optional = true }
+serde = { version = "^1.0.0", features = ["derive"], optional = true }
+specta = { version = "^1.0.0", optional = true }
 trie-rs = "0.4.2"
 
 [features]
@@ -26,11 +26,11 @@ bevy_reflect = ["dep:bevy_reflect"]
 
 [build-dependencies]
 prettyplease = "0.2.35"
-proc-macro2 = "1.0.95"
-quote = "1.0.40"
-reqwest = { version = "0.12.22", features = ["blocking", "json"] }
-serde = { version = "1.0.219", features = ["derive"] }
-serde_json = "1.0.141"
-syn = { version = "2.0.104", features = ["full"] }
+proc-macro2 = "^1.0.0"
+quote = "^1.0.0"
+reqwest = { version = "^0.11.0", features = ["blocking", "json"] }
+serde = { version = "^1.0.0", features = ["derive"] }
+serde_json = "^1.0.0"
+syn = { version = "^2.0.0", features = ["full"] }
 
 
