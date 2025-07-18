@@ -1,12 +1,14 @@
 [package]
 name = "dewey-decimal"
-version = "1.0.0"
+version = "1.0.1"
 edition = "2024"
 license-file = "LICENSE"
 description = "Simple wrapper around Dewey Decimal classifications"
 readme = "README.md"
 homepage = "https://github.com/dax-dot-gay/dewey-decimal"
 repository = "https://github.com/dax-dot-gay/dewey-decimal"
+categories = ["text-processing", "parser-implementations", "data-structures"]
+keywords = ["dewey-decimal", "serde", "ddc", "books", "openlibrary"]
 
 [dependencies]
 bevy_reflect = { version = "0.16.1", optional = true }
