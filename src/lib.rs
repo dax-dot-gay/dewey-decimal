@@ -5,6 +5,31 @@
 //! Provides functionality for fetching information about Dewey Decimal classes, along with methods for traversing the class hierarchy.
 //!
 //! Classes are automatically generated from [OpenLibrary](https://raw.githubusercontent.com/internetarchive/openlibrary/refs/heads/master/openlibrary/components/LibraryExplorer/ddc.json), or generated from an included JSON file if unable.
+//! 
+//! ## Usage
+//! 
+//! ```rust
+//! use dewey_decimal::{Dewey, Class};
+//! 
+//! fn main() {
+//!     // Get the class representing "Computer science, knowledge & systems"
+//!     let comp_sci = Class::get("00").unwrap();
+//! 
+//!     // Gets all children in this class
+//!     let cs_classes = comp_sci.all_children()
+//! }
+//! ```
+//! 
+//! ## Features
+//!
+//! `dewey-decimal` supports several serialization utilities, which can be activated with feature flags
+//!
+//! | Feature           | Description                                                                       |
+//! |-------------------|-----------------------------------------------------------------------------------|
+//! | `serde`           | Supports `serde` serialization & deserialization on [Class] (enabled by default)  |
+//! | `specta`          | Supports `specta::Type` on [Class]                                                |
+//! | `schemars`        | Supports `schemars::JsonSchema` on [Class]                                        |
+//! | `bevy_reflect`    | Supports `bevy_reflect::Reflect` on [Class]                                       |
 
 use trie_rs::map::Trie;
 pub use trie_rs;
@@ -26,6 +51,16 @@ impl Dewey {
     /// - `Trie<u8, Class>` - The underlying prefix trie
     pub fn map(&self) -> Trie<u8, Class> {
         CLASSES.to_owned()
+    }
+
+    /// Gets a [Vec] of all classes
+    /// 
+    /// # Returns
+    /// 
+    /// - `Vec<Class>` - Gigantic [Vec] of [Class] instances
+    pub fn all(&self) -> Vec<Class> {
+        self.map().iter().map(|item: (Vec<u8>, &Class)| item.1.clone())
+            .collect()
     }
 
     fn as_label(&self, code: impl AsRef<str>) -> Vec<u8> {
